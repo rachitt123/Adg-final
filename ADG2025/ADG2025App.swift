@@ -11,7 +11,8 @@ import SwiftUI
 struct ADG2025App: App {
     var body: some Scene {
         WindowGroup {
-           MainTabView()
+        
+            GetStartedView()
         }
     }
 }

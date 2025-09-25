@@ -34,6 +34,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				Roamio/Untitled.swift,
 			);
 			target = DA80C1252E76F23100F4CB91 /* ADG2025 */;
 		};

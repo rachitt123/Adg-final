@@ -76,7 +76,7 @@ struct GetStartedView: View {
                                     .stroke(Color.gray.opacity(0.4), lineWidth: 1)
                             )
                         
-                        // Notch - Black to blend with frame
+                        // Notch
                         RoundedRectangle(cornerRadius: 9)
                             .fill(Color.black)
                             .frame(width: 63, height: 20)
@@ -86,15 +86,14 @@ struct GetStartedView: View {
                                     .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                             )
                         
-                        // Home indicator - Subtle white
+                        // Home indicator
                         RoundedRectangle(cornerRadius: 2)
                             .fill(Color.white.opacity(0.4))
                             .frame(width: 45, height: 3)
                             .offset(y: 185)
                         
-                        // Side buttons - Black theme
+                        // Side buttons
                         VStack(spacing: 40) {
-                            // Volume buttons
                             RoundedRectangle(cornerRadius: 1)
                                 .fill(Color.black)
                                 .frame(width: 3, height: 30)
@@ -113,7 +112,6 @@ struct GetStartedView: View {
                         }
                         .offset(x: 104)
                         
-                        // Power button
                         RoundedRectangle(cornerRadius: 1)
                             .fill(Color.black)
                             .frame(width: 3, height: 50)
@@ -133,7 +131,6 @@ struct GetStartedView: View {
                     
                     Spacer()
                     
-                    // Bottom sheet positioned below the iPhone
                     if isBottomSheetVisible {
                         bottomSheetContent
                             .transition(.asymmetric(
@@ -143,35 +140,25 @@ struct GetStartedView: View {
                     }
                 }
             }
-            
             .toolbarBackground(Color.black.opacity(0.9), for: .navigationBar)
             .onAppear {
-                // Staggered animations for smoother effect
                 withAnimation(.easeOut(duration: 0.8)) {
                     phoneOpacity = 1
                     phoneScale = 1
                 }
-                
-                // 3D rotation animation
                 withAnimation(.easeInOut(duration: 3).delay(0.5)) {
                     phoneRotation = 15
                 }
-                
-                // Continuous subtle rotation
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     withAnimation(.easeInOut(duration: 4).repeatForever(autoreverses: true)) {
                         phoneRotation = -15
                     }
                 }
-                
-                // Bottom sheet animation with slight delay
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                     withAnimation(.spring(response: 0.8, dampingFraction: 0.8)) {
                         isBottomSheetVisible = true
                     }
                 }
-                
-                // Delayed content fade-in for better polish
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                     withAnimation(.easeInOut(duration: 0.6).delay(0.1)) {
                         isContentVisible = true
@@ -197,7 +184,7 @@ struct GetStartedView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 10)
                     
-                    NavigationLink(destination: HomeView()) {
+                    NavigationLink(destination: MainTabView().navigationBarBackButtonHidden(true)) {
                         Text("Get Started")
                             .font(.headline)
                             .fontWeight(.semibold)
@@ -206,6 +193,8 @@ struct GetStartedView: View {
                             .background(Color.white)
                             .clipShape(RoundedRectangle(cornerRadius: 16))
                             .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 3)
+                    
+
                     }
                     .transition(.asymmetric(
                         insertion: .opacity.combined(with: .scale(scale: 0.9)).combined(with: .offset(y: 20)),
@@ -236,8 +225,6 @@ struct GetStartedHomeView: View {
     var body: some View {
         ZStack {
             Color.deepBlue.ignoresSafeArea()
-            
-            
         }
     }
 }
